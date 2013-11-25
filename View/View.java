@@ -1,62 +1,83 @@
 package View;
-
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.border.TitledBorder;
 
 import Model.DBModel;
 
 public class View extends JFrame implements ActionListener
 {
+
+    private static final long serialVersionUID = 1L;
+    //Database model
     private DBModel model;
-    
+    //Tabbed pane 
     private JTabbedPane jtabbedPane = new JTabbedPane();
-    private JTable jtableResults = new JTable();
+    
+    //Different tabs for queries
+    private InsertTab insertionPanel = new InsertTab();
+    private InsertTab2 insertionPanel2 = new InsertTab2();
+    private QueryTab queryPanel1 = new QueryTab();
+    private QueryTab2 queryPanel2 = new QueryTab2();
+    private QueryTab3 queryPanel3 = new QueryTab3();
+   
+    //Buttons
     private JButton jbtnExit = new JButton("Exit");
+    private JButton jbtnRefresh = new JButton("Refresh");
     
     public View()
     {
-	this.jtabbedPane.addTab("Insertion",new InsertTab());
-	this.jtabbedPane.addTab("Page 1",null);
-	this.jtabbedPane.addTab("Page 2",null);
-	this.jtabbedPane.addTab("Page 3",null);
+	//Filling the panels
+	this.jtabbedPane.addTab("Insertion",insertionPanel);
+	this.jtabbedPane.addTab("Insertion Cont'", insertionPanel2 );
+	this.jtabbedPane.addTab("Query", queryPanel1);
+	this.jtabbedPane.addTab("Query Cont'",queryPanel2);
+	this.jtabbedPane.addTab("Query Cont'", queryPanel3);
 	
-	this.setLayout(new GridBagLayout());
-
-
-//	(int gridx,int gridy,int gridwidth,int gridheight,double weightx,double weighty,int anchor, int fill,Insets insets,int ipadx,int ipady);
-	GridBagConstraints c = new GridBagConstraints(0,0, GridBagConstraints.REMAINDER, 2 ,1 , 1,
-		GridBagConstraints.FIRST_LINE_START,GridBagConstraints.BOTH,new Insets(0,0,0,0),0,0);
-	this.add(this.jtabbedPane, c);
+	//Making button panel
+	JPanel buttonPanel = new JPanel(new GridLayout(1,2));
+	buttonPanel.add(jbtnRefresh);
+	buttonPanel.add(jbtnExit);
 	
-//	GridBagConstraints c1 = new GridBagConstraints(0,1, GridBagConstraints.REMAINDER,1,1,1,
-//		GridBagConstraints.LINE_START,GridBagConstraints.BOTH,new Insets(0,10,0,0),0,0);
-//	
-//	jtableResults.setBorder(new TitledBorder("Results"));
-//	this.add(this.jtableResults, c1);
+	//Adding everything to the container
+	this.setLayout(new BorderLayout());
+	this.add(this.jtabbedPane, BorderLayout.CENTER);	
+	this.add(buttonPanel, BorderLayout.SOUTH);
 	
-	
-	GridBagConstraints c2 = new GridBagConstraints(0,2,1,1,1,0.1,GridBagConstraints.LAST_LINE_END,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0);
-	this.add(this.jbtnExit, c2);
-	
-	Toolkit tk = Toolkit.getDefaultToolkit();  
-	int xSize = ((int) tk.getScreenSize().getWidth()-50);  
-	int ySize = ((int) tk.getScreenSize().getHeight()-100);  
-	
+	//setting the screen size
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	this.setSize(xSize, ySize);
-//	this.pack();
+	Toolkit tk = Toolkit.getDefaultToolkit();  
+	int ySize = ((int) tk.getScreenSize().getHeight()-50);  
+	this.setSize(650, ySize);
 	this.setLocationRelativeTo(null);
 	this.setVisible(true);
+    }
+
+    /**
+     * @return the insertionPanel
+     */
+    public InsertTab getInsertionPanel() {
+        return insertionPanel;
+    }
+
+    /**
+     * @return the insertionPanel2
+     */
+    public InsertTab2 getInsertionPanel2() {
+        return insertionPanel2;
+    }
+
+    /**
+     * @return the jbtnExit
+     */
+    public JButton getJbtnExit() {
+        return jbtnExit;
     }
 
     /**

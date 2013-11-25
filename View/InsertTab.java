@@ -1,77 +1,280 @@
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-public class InsertTab extends Tab 
+public class InsertTab extends JPanel 
 {
+    private static final long serialVersionUID = 1L;
+    //JLabes
     private JLabel jlblcusName = new JLabel("Name:");
     private JLabel jlblcusAddr = new JLabel("Address:");
-    
+    private JLabel jlblAsscusName = new JLabel("Customer Name:");
+    private JLabel jlblAssid = new JLabel("Ass. ID:");
+    private JLabel jlblAssDate = new JLabel("Date(MM/DD/YYYY):");
+    private JLabel jlblAssDetails = new JLabel("Details:");
+    private JLabel jlbldepId = new JLabel("Dep ID:");
+    private JLabel jlbldepData = new JLabel("Data:");
+    private JLabel jlblProcId = new JLabel("Proc. ID:");
+    private JLabel jlblProcDep = new JLabel("Dep ID:");
+    private JLabel jlblProcDate = new JLabel("Data(MM/DD/YYYY):");
+    private JLabel jlblProcDetail1 = new JLabel("Fit Type:");
+    private JLabel jlblProcDetail2 = new JLabel("Machine type:");
+
+    //JTextFields
     private JTextField jtfcusName = new JTextField();
     private JTextField jtfcusAddr = new JTextField();
+    private JTextField jtfdepID = new JTextField();
+    private JTextField jtfdepData = new JTextField();
+    private JTextField jtfAsscusName = new JTextField();
+    private JTextField jtfAssid = new JTextField();
+    private JTextField jtfAssDate = new JTextField();
+    private JTextField jtfAssDetails = new JTextField();
+    private JTextField jtfProcId = new JTextField();
+    private JTextField jtfProcDep = new JTextField();
+    private JTextField jtfProcData = new JTextField();
+    private JTextField jtfProcDetail1 = new JTextField();
+    private JTextField jtfProcDetail2 = new JTextField();
     
+    //JButtons
     private JButton jbtnInsertCustomer = new JButton("Insert Customer");
+    private JButton jbtnInsertDepartment = new JButton("Insert Department");
+    private JButton jbtnInsertAssembly = new JButton("Insert Assembly");
+    private JButton jbtnInsertProcess = new JButton("Insert Process");
+    
+    //JRadio Buttons
+    private JRadioButton jrbtnFitProc = new JRadioButton("Fit Proc.");
+    private JRadioButton jrbtnCutProc = new JRadioButton("Cut Proc.");
+    private JRadioButton jrbtnPaintProc = new JRadioButton("Paint Proc.");
+   
+    //Button Groups
+    private ButtonGroup btngProcType = new  ButtonGroup();
+    
+    
     
     public InsertTab()
     {
-//	(int gridx,int gridy,int gridwidth,int gridheight,double weightx,double weighty,int anchor, int fill,Insets insets,int ipadx,int ipady);
-	JPanel query1 = new JPanel();
+	//Query 1 Panel
+	JPanel query1 = new JPanel(new GridLayout(0,2));
 	query1.setBorder(new TitledBorder("Insert Customer:"));
-	query1.setLayout(new GridBagLayout());
-	GridBagConstraints c = new GridBagConstraints(0,0,1,1,0.0,1,
-		GridBagConstraints.FIRST_LINE_START,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0);
-	query1.add(jlblcusName, c);
-	GridBagConstraints c1 = new GridBagConstraints(1,0,GridBagConstraints.REMAINDER,1,1,1,
-			GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL ,new Insets(0,0,0,0),0,0);
-	query1.add(jtfcusName, c1);
-	GridBagConstraints c2 = new GridBagConstraints(0,1,1,1,1,1,
-			GridBagConstraints.LINE_START,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0);
-	query1.add(jlblcusAddr, c2);
-	GridBagConstraints c3 = new GridBagConstraints(1,1,1,1,1,1,
-			GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,new Insets(0,0,0,0),0,0);
-	query1.add(jtfcusAddr, c3);
+	query1.add(jlblcusName);
+	query1.add(jtfcusName);
+	query1.add(jlblcusAddr);
+	query1.add(jtfcusAddr);
+	query1.add(new JPanel());
+	query1.add(jbtnInsertCustomer);
 	
-	c3 = new GridBagConstraints(3,2,1,1,1,1,
-		GridBagConstraints.LAST_LINE_END,GridBagConstraints.NONE,new Insets(0,0,0,0),0,0);
-	query1.add(jbtnInsertCustomer, c3);
-	
-	
-	JPanel query2 = new JPanel();
+	//Query 2 Panel
+	JPanel query2 = new JPanel(new GridLayout(0,2));
 	query2.setBorder(new TitledBorder("Insert Department:"));
-	JPanel query3 = new JPanel();
+	query2.add(jlbldepId);
+	query2.add(jtfdepID);
+	query2.add(jlbldepData);
+	query2.add(jtfdepData);
+	query2.add(new JPanel());
+	query2.add(jbtnInsertDepartment);
+	
+	//Query 3 Panel
+	JPanel query3 = new JPanel(new GridLayout(0,2));
 	query3.setBorder(new TitledBorder("Insert Assembly:"));
-	JPanel query4 = new JPanel();
+	query3.add(jlblAsscusName);
+	query3.add(jtfAsscusName);
+	query3.add(jlblAssid);
+	query3.add(jtfAssid);
+	query3.add(jlblAssDate);
+	query3.add(jtfAssDate);
+	query3.add(jlblAssDetails);
+	query3.add(jtfAssDetails);
+	query3.add(new JPanel());
+	query3.add(jbtnInsertAssembly);
+	
+	
+	//Radio Panel
+	JPanel radioPanel = new JPanel(new GridLayout(1,3));
+	btngProcType.add(jrbtnFitProc);
+	jrbtnFitProc.setSelected(true);
+	btngProcType.add(jrbtnCutProc);
+	btngProcType.add(jrbtnPaintProc);
+	radioPanel.add(jrbtnFitProc);
+	radioPanel.add(jrbtnCutProc);
+	radioPanel.add(jrbtnPaintProc);
+	
+	//Query 4 Panel
+	JPanel query4 = new JPanel(new GridLayout(0,2));
 	query4.setBorder(new TitledBorder("Insert Process:"));
-	JPanel query5 = new JPanel();
-	query5.setBorder(new TitledBorder("Insert Account:"));
-	JPanel query6 = new JPanel();
-	query6.setBorder(new TitledBorder("Insert Job:"));
-	JPanel query7 = new JPanel();
-	query7.setBorder(new TitledBorder("End Job:"));
-	JPanel query8 = new JPanel();
-	query8.setBorder(new TitledBorder("Insert Transaction:"));
+	query4.add(jlblProcId);
+	query4.add(jtfProcId);
+	query4.add(jlblProcDep);
+	query4.add(jtfProcDep);
+	query4.add(jlblProcDate);
+	query4.add(jtfProcData);
+	query4.add(jlblProcDetail1);
+	query4.add(jtfProcDetail1);
+	query4.add(jlblProcDetail2);
+	query4.add(jtfProcDetail2);
+	query4.add(radioPanel);
+	query4.add(jbtnInsertProcess);
 	
-	
-	this.setLayout(new GridLayout(4,1));
+	//Adding panels to JFrame
+	this.setLayout(new GridLayout(0,1));
 	this.add(query1);
 	this.add(query2);
 	this.add(query3);
 	this.add(query4);
-//	this.add(query5);
-//	this.add(query6);
-//	this.add(query7);
-//	this.add(query8);
 	
     }
 
+    /**
+     * @return the jtfcusName
+     */
+    public JTextField getJtfcusName() {
+        return jtfcusName;
+    }
+
+    /**
+     * @return the jtfcusAddr
+     */
+    public JTextField getJtfcusAddr() {
+        return jtfcusAddr;
+    }
+
+    /**
+     * @return the jtfdepID
+     */
+    public JTextField getJtfdepID() {
+        return jtfdepID;
+    }
+
+    /**
+     * @return the jtfdepData
+     */
+    public JTextField getJtfdepData() {
+        return jtfdepData;
+    }
+
+    /**
+     * @return the jtfAsscusName
+     */
+    public JTextField getJtfAsscusName() {
+        return jtfAsscusName;
+    }
+
+    /**
+     * @return the jtfAssid
+     */
+    public JTextField getJtfAssid() {
+        return jtfAssid;
+    }
+
+    /**
+     * @return the jtfAssDate
+     */
+    public JTextField getJtfAssDate() {
+        return jtfAssDate;
+    }
+
+    /**
+     * @return the jtfAssDetails
+     */
+    public JTextField getJtfAssDetails() {
+        return jtfAssDetails;
+    }
+
+    /**
+     * @return the jtfProcId
+     */
+    public JTextField getJtfProcId() {
+        return jtfProcId;
+    }
+
+    /**
+     * @return the jtfProcDep
+     */
+    public JTextField getJtfProcDep() {
+        return jtfProcDep;
+    }
+
+    /**
+     * @return the jtfProcDate
+     */
+    public JTextField getJtfProcData() {
+        return jtfProcData;
+    }
+
+    /**
+     * @return the jtfProcDetail1
+     */
+    public JTextField getJtfProcDetail1() {
+        return jtfProcDetail1;
+    }
+
+    /**
+     * @return the jtfProcDetail2
+     */
+    public JTextField getJtfProcDetail2() {
+        return jtfProcDetail2;
+    }
+
+    /**
+     * @return the jbtnInsertCustomer
+     */
+    public JButton getJbtnInsertCustomer() {
+        return jbtnInsertCustomer;
+    }
+
+    /**
+     * @return the jbtnInsertDepartment
+     */
+    public JButton getJbtnInsertDepartment() {
+        return jbtnInsertDepartment;
+    }
+
+    /**
+     * @return the jbtnInsertAssembly
+     */
+    public JButton getJbtnInsertAssembly() {
+        return jbtnInsertAssembly;
+    }
+
+    /**
+     * @return the jbtnInsertProcess
+     */
+    public JButton getJbtnInsertProcess() {
+        return jbtnInsertProcess;
+    }
+
+    /**
+     * @return the jrbtnFitProc
+     */
+    public JRadioButton getJrbtnFitProc() {
+        return jrbtnFitProc;
+    }
+
+    /**
+     * @return the jrbtnCutProc
+     */
+    public JRadioButton getJrbtnCutProc() {
+        return jrbtnCutProc;
+    }
+
+    /**
+     * @return the jrbtnPaintProc
+     */
+    public JRadioButton getJrbtnPaintProc() {
+        return jrbtnPaintProc;
+    }
+
+    /**
+     * @return the btngProcType
+     */
+    public ButtonGroup getBtngProcType() {
+        return btngProcType;
+    }
 }

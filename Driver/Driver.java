@@ -31,6 +31,16 @@ public class Driver
      */
     public static void main (String [] args)
     {
+	try
+	{
+	    // loading the driver class from sql library
+	    Class.forName("oracle.jdbc.OracleDriver");
+	}
+	catch (Exception e) 
+	{
+	    System.out.println("Unable to load the driver class!");
+	    System.exit(-1);
+	}
 	new Driver();
     }
 
