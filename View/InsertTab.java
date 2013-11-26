@@ -24,9 +24,9 @@ public class InsertTab extends JPanel
     private JLabel jlbldepData = new JLabel("Data:");
     private JLabel jlblProcId = new JLabel("Proc. ID:");
     private JLabel jlblProcDep = new JLabel("Dep ID:");
-    private JLabel jlblProcDate = new JLabel("Data(MM/DD/YYYY):");
+    private JLabel jlblProcData = new JLabel("Data:");
     private JLabel jlblProcDetail1 = new JLabel("Fit Type:");
-    private JLabel jlblProcDetail2 = new JLabel("Machine type:");
+    private JLabel jlblProcDetail2 = new JLabel("");
 
     //JTextFields
     private JTextField jtfcusName = new JTextField();
@@ -113,11 +113,12 @@ public class InsertTab extends JPanel
 	query4.add(jtfProcId);
 	query4.add(jlblProcDep);
 	query4.add(jtfProcDep);
-	query4.add(jlblProcDate);
+	query4.add(jlblProcData);
 	query4.add(jtfProcData);
 	query4.add(jlblProcDetail1);
 	query4.add(jtfProcDetail1);
 	query4.add(jlblProcDetail2);
+	jtfProcDetail2.setEnabled(false);
 	query4.add(jtfProcDetail2);
 	query4.add(radioPanel);
 	query4.add(jbtnInsertProcess);
@@ -130,6 +131,14 @@ public class InsertTab extends JPanel
 	this.add(query4);
 	
     }
+    
+    public JLabel getjlblProcDetail1(){
+	return jlblProcDetail1;
+    }
+    
+    public JLabel getjlblProcDetail2(){
+ 	return jlblProcDetail2;
+     }
 
     /**
      * @return the jtfcusName

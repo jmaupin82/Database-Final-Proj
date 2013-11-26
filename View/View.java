@@ -74,6 +74,27 @@ public class View extends JFrame implements ActionListener
     }
 
     /**
+     * @return the queryPanel1
+     */
+    public QueryTab getQueryPanel1() {
+        return queryPanel1;
+    }
+
+    /**
+     * @return the queryPanel2
+     */
+    public QueryTab2 getQueryPanel2() {
+        return queryPanel2;
+    }
+
+    /**
+     * @return the queryPanel3
+     */
+    public QueryTab3 getQueryPanel3() {
+        return queryPanel3;
+    }
+
+    /**
      * @return the jbtnExit
      */
     public JButton getJbtnExit() {
